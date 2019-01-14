@@ -10,3 +10,4 @@ services:
     working_dir: /app
     environment:
       RACK_ENV: development
+    command: ruby start.rb
