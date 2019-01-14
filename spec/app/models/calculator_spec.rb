@@ -44,4 +44,14 @@ RSpec.describe Calculator, type: :model do
       end
     end
   end
+
+  context 'when input is invalid' do
+    context 'when unsupported operator is used' do
+      let(:input_params) { '5 3 4 g -' }
+
+      it 'returns error' do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
+  end
 end

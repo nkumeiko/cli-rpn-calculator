@@ -11,7 +11,7 @@ class Calculator
   end
 
   def apply(str)
-    tokens = str.split(' ')
+    tokens = Tokenizer.tokenize(str)
     tokens.each { |token| process_token(token) }
     operands.last
   end
@@ -40,8 +40,19 @@ class Calculator
       operands << Float(token)
     else
       operator = find_operator(token)
-      current_operands = operands.pop(operator.number_of_operands)
-      operands << operator.execute(*current_operands)
+      validate_operator(operator)
+      apply_operator(operator)
     end
+  end
+
+  def validate_operator(operator)
+    if operator.number_of_operands > operands.length
+      raise ArgumentError, 'Not enough operands.'
+    end
+  end
+
+  def apply_operator(operator)
+    current_operands = operands.pop(operator.number_of_operands)
+    operands << operator.execute(*current_operands)
   end
 end
