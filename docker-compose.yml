@@ -1,0 +1,12 @@
+version: '3'
+volumes:
+  bundle: {}
+services:
+  app:
+    image: ruby:2.6.0
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    working_dir: /app
+    environment:
+      RACK_ENV: development
