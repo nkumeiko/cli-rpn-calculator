@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 class Calculator
   OPERATORS = [
     Operators::Addition,
@@ -37,7 +39,7 @@ class Calculator
 
   def process_token(token)
     if numeric?(token)
-      operands << Float(token)
+      operands << BigDecimal(token)
     else
       operator = find_operator(token)
       validate_operator(operator)

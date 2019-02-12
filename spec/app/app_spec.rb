@@ -90,5 +90,13 @@ RSpec.describe App do
       expect(STDIN).to receive(:gets).and_return('q')
       subject.run
     end
+
+    it 'processes ".2 .1 +" correctly and quits' do
+      expect(STDIN).to receive(:gets).and_return('.2 .1 +')
+      expect(STDOUT).to receive(:puts).with(0.3)
+
+      expect(STDIN).to receive(:gets).and_return('q')
+      subject.run
+    end
   end
 end
