@@ -6,6 +6,8 @@ module Operators
       end
 
       def execute(a, b)
+        raise ArgumentError, 'Division by zero' if b == 0
+
         a / b
       end
     end

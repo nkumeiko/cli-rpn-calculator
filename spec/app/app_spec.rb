@@ -98,5 +98,16 @@ RSpec.describe App do
       expect(STDIN).to receive(:gets).and_return('q')
       subject.run
     end
+
+    it 'can handle "division by zero" so proceeding with calculations' do
+      expect(STDIN).to receive(:gets).and_return('3 0 /')
+      expect(STDOUT).to receive(:puts).with('Division by zero')
+
+      expect(STDIN).to receive(:gets).and_return('4 5 +')
+      expect(STDOUT).to receive(:puts).with(9)
+
+      expect(STDIN).to receive(:gets).and_return('q')
+      subject.run
+    end
   end
 end

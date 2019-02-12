@@ -17,6 +17,10 @@ RSpec.describe Operators::Division, type: :model do
     it 'returns 5 for 25 and 5' do
       expect(subject.execute(25, 5)).to eq 5
     end
+
+    it 'raise "Division by zero" ArgumentError for 3 and 0' do
+      expect { subject.execute(3, 0) }.to raise_error(ArgumentError, 'Division by zero')
+    end
   end
 
   context '.number_of_operands' do
